@@ -1,0 +1,57 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "books": [
+    {
+      "title": "sdaf",
+      "id": 1
+    },
+    {
+      "title": "society of mindy",
+      "id": 3
+    },
+    {
+      "title": "strawberries 'n crud",
+      "id": 4
+    },
+    {
+      "title": "bop",
+      "id": 6
+    },
+    {
+      "title": "tacal",
+      "id": 7
+    },
+    {
+      "title": "boof",
+      "id": 8
+    },
+    {
+      "title": "laka",
+      "id": 9
+    },
+    {
+      "title": "Futurama",
+      "id": 10
+    },
+    {
+      "title": "Pastarama",
+      "id": 11
+    }
+  ]
+}
