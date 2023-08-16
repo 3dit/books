@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+//import BooksContext from './context/books';
+import { Provider } from './context/bookContext';
 
 const el = document.getElementById('root');
 const root = ReactDOM.createRoot(el);
 
 root.render(
     <React.StrictMode>
-        <App />
+        <Provider>
+            <App />
+        </Provider>
     </React.StrictMode>
 );

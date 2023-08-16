@@ -1,27 +1,20 @@
 import { React } from 'react';
-import { useState } from 'react';
 import BookShow from './BookShow';
+import CoreContext from '../hooks/bookDataHook';
 
-function BookList({ createBook, deleteBook, books, onSubmit }) {
-    let [newTitle, setNewTitle] = useState('');
+function BookList({ onSubmit }) {
 
-    function handleChange(event) {
-        setNewTitle(event?.target?.value ?? '');
-    }
-    function handleSubmit(event) {
-        event.preventDefault();
-        createBook(newTitle);
-    }
-    function doCreateBook(event) {
-        event.preventDefault();
-        createBook(newTitle);
-        setNewTitle('');
-    }
-    function doDelete(id) {
-        deleteBook(id);
-    }
+    const { books, deleteBook  } = CoreContext();
 
-    const breakup = (books)
+    //We could do delete from BookShow. We already moved edit functionality
+    //to BookShow. In the case of a simple app where cards have titels and no greater logic
+    //is applied it wouldn't matter if BookList or BookShow handled these operations. But
+    //in a more shophisticated app which would have to, say, ensure validation for something
+    //like no two books cards have the same title, then it would make since for the higher level
+    //BookList to handle edit and delete functionality to make it easier/cleaner to implement
+    //such validation logic. BookShow wouldn't and shouldn't know if other 'cards/shows' already
+    //contain a duplicate title. And if it did, it still may not be in a position to indicate a
+    //error to the user: perhaps BookList or even App should be responsible for that.
 
     return (
         <div>
@@ -32,31 +25,11 @@ function BookList({ createBook, deleteBook, books, onSubmit }) {
                             <BookShow
                                 book={book}
                                 key={index}
-                                doDelete={doDelete}
-                                onSubmit={onSubmit}
+                                doDelete={() => { deleteBook(book.id); }}
                             />)
                     })
                 }
             </div>
-            <form className="level" onSubmit={handleSubmit}>
-                <div className="level-left">
-                    <div className="level-item">
-                        <p className="subtitle is-5">
-                            <strong>Book Title</strong>
-                        </p>
-                    </div>
-                    <div className="level-item">
-                        <div className="field has-addons">
-                            <p className="control">
-                                <input className="input" type="text" value={newTitle} onChange={handleChange} />
-                            </p>
-                            <p className="control">
-                                <button className="button" onClick={doCreateBook}>Add</button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </form>
         </div>
     );
 }
